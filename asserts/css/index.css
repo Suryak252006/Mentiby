@@ -1,0 +1,126 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
+    scroll-behavior: smooth;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: rgb(26, 26, 26);
+}
+
+section {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+}
+
+nav {
+    color: white;
+    width: 100%;
+    margin: auto;
+}
+
+nav h1 {
+    margin-left: 10%;
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.main_section {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.main_section h1 {
+    font-size: 2.2rem;
+}
+
+.main_section p {
+    font-size: 1.1rem;
+    margin-top: 15px;
+    letter-spacing: .01em;
+    color: gray;
+}
+
+
+.paths {
+    margin-top: 40px;
+}
+
+
+.paths ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
+    text-align: left;
+}
+
+.paths ul li {
+    border: 1px solid rgb(68, 68, 68);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.paths ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    padding: 10px 50px;
+}
+
+
+.paths ul li:hover {
+    border: 1px solid rgb(102, 102, 102);
+}
+
+.footer {
+    padding: 4rem;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.footer a{
+    color: white;
+    text-decoration: none;
+}
+
+/* For WebKit-based browsers */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(26, 26, 26);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333333;
+}
+ 
+
+
+@media (max-width: 400px) {
+    .paths ul li a {
+        padding: 6px 12px;
+    }
+
+    section {
+        padding: 12px 15px;
+    }
+}
