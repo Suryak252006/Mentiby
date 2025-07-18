@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentiBY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --dark-blue: #0056b3;
+            --light-grey: #f8f9fa;
+            --medium-grey: #e9ecef;
+            --text-dark: #343a40;
+            --text-light: #6c757d;
+            --card-bg: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-grey);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent 70%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-section p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-blue);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow-light);
+        }
+
+        .btn:hover {
+            background-color: var(--medium-grey);
+            box-shadow: 0 8px 20px var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- Explore Roles Section --- */
+        .explore-roles-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: white;
+        }
+
+        .explore-roles-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .filter-bar {
+            margin-bottom: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-button {
+            background-color: var(--medium-grey);
+            color: var(--text-dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .filter-button:hover, .filter-button.active {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .role-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 4px 15px var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .role-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px var(--shadow-hover);
+        }
+
+        .role-card .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .role-card h3 {
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .role-card p {
+            font-size: 0.95em;
+            color: var(--text-light);
+            flex-grow: 1; /* Ensures cards with varying description lengths align at the bottom */
+        }
+
+        /* --- Call to Action / Discovery Section --- */
+        .discovery-section {
+            background-color: var(--light-grey);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .discovery-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .discovery-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--dark-blue);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- Feedback Section --- */
+        .feedback-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: white;
+        }
+
+        .feedback-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .feedback-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .feedback-buttons .btn {
+            background-color: var(--medium-grey);
+            color: var(--text-dark);
+        }
+
+        .feedback-buttons .btn:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-blue);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-section p {
+                font-size: 1em;
+            }
+
+            .explore-roles-section h2,
+            .discovery-section h2,
+            .feedback-section h2 {
+                font-size: 1.8em;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-bar input[type="text"] { /* This rule is now effectively unused */
+                width: 80%;
+                margin-bottom: 10px;
+            }
+
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feedback-buttons {
+                flex-direction: column;
+            }
+
+            .feedback-buttons .btn {
+                width: 80%;
+                margin: 0 auto 15px auto;
+            }
+        }
+    </style>
+    <!-- Font Awesome for Icons (Optional, but good for quick icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="container hero-content">
+            <h1>Unlock Your Potential with **Haveloc Insider**</h1>
+            <p>Navigate your career journey with confidence. Explore roles, salary insights, and real-world perspectives to find your perfect fit.</p>
+            <a href="#explore-roles" class="btn">Start Exploring Roles</a>
+        </div>
+    </header>
+
+    <section id="explore-roles" class="explore-roles-section">
+        <div class="container">
+            <h2>Discover Your Path</h2>
+            <div class="filter-bar">
+                <!-- Removed: <input type="text" id="roleSearch" placeholder="Search roles..."> -->
+                <button class="filter-button active" data-category="all">All Roles</button>
+                <button class="filter-button" data-category="development">Development</button>
+                <button class="filter-button" data-category="data-science">Data Science</button>
+                <button class="filter-button" data-category="operations">Operations</button>
+                <button class="filter-button" data-category="management">Management</button>
+                <button class="filter-button" data-category="specialized">Specialized</button>
+            </div>
+
+            <div class="role-grid" id="roleGrid">
+                <!-- Role Cards will be injected here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="discovery-section">
+        <div class="container">
+            <h2>Not sure where to start?</h2>
+            <p>Take our quick quiz to find roles that match your skills and interests!</p>
+            <a href="#" class="btn-secondary">Find My Perfect Role</a>
+        </div>
+    </section>
+
+    <section class="feedback-section">
+        <div class="container">
+            <h2>Help Us Improve MentiBY</h2>
+            <p>Your feedback helps us make this platform even better. Let us know your thoughts or report any issues.</p>
+            <div class="feedback-buttons">
+                <a href="#" class="btn">Give Feedback & Suggestions</a>
+                <a href="#" class="btn">Report a Bug</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>MentiBY &copy; 2025</p>
+            <p>
+                <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const roles = [
+            { name: "Frontend", icon: "fas fa-code", description: "Crafting engaging user interfaces.", category: "development", link: "blogs/front-end-developer.html" },
+            { name: "Backend", icon: "fas fa-server", description: "Building robust server-side logic.", category: "development", link: "blogs/backend-developer.html" },
+            { name: "Full Stack", icon: "fas fa-layer-group", description: "Mastering both front and backend.", category: "development", link: "blogs/full-stack.html" },
+            { name: "DevOps", icon: "fas fa-cogs", description: "Bridging development and operations.", category: "operations", link: "blogs/devops-engineer.html" },
+            { name: "Android", icon: "fab fa-android", description: "Developing mobile applications for Android.", category: "development", link: "blogs/android-developer.html" },
+            { name: "iOS", icon: "fab fa-apple", description: "Creating apps for Apple's ecosystem.", category: "development", link: "blogs/ios-developer.html" },
+            { name: "Java Developer", icon: "fab fa-java", description: "Building versatile applications with Java.", category: "development", link: "blogs/java-developer.html" },
+            { name: "PHP Developer", icon: "fab fa-php", description: "Developing dynamic web applications.", category: "development", link: "blogs/php-developer.html" },
+            { name: "SQL Developer", icon: "fas fa-database", description: "Managing and optimizing databases.", category: "data-science", link: "blogs/sql-developer.html" },
+            { name: "UI Developer", icon: "fas fa-pencil-ruler", description: "Focusing on user interface aesthetics.", category: "development", link: "blogs/ui-developer.html" },
+            { name: "Web Developer", icon: "fas fa-globe", description: "Building websites and web applications.", category: "development", link: "blogs/web-developer.html" },
+            { name: ".NET Developer", icon: "fas fa-code", description: "Developing with Microsoft's .NET framework.", category: "development", link: "blogs/dot-net-software-developer.html" },
+            { name: "Scrum Master", icon: "fas fa-people-arrows", description: "Facilitating Agile development teams.", category: "management", link: "blogs/scrum-master.html" },
+            { name: "Data Analyst", icon: "fas fa-chart-bar", description: "Interpreting data to find insights.", category: "data-science", link: "blogs/data-analyst.html" },
+            { name: "Data Engineer", icon: "fas fa-cloud-upload-alt", description: "Building data pipelines and infrastructure.", category: "data-science", link: "blogs/data-engineer.html" },
+            { name: "Data Scientist", icon: "fas fa-flask", description: "Modeling and predicting with complex data.", category: "data-science", link: "blogs/data-scientist.html" },
+            { name: "Software Architect", icon: "fas fa-sitemap", description: "Designing software systems and structures.", category: "development", link: "blogs/software-architect.html" },
+            { name: "Software Developer", icon: "fas fa-laptop-code", description: "Creating and maintaining software.", category: "development", link: "blogs/software-developer.html" },
+            { name: "Network Engineer", icon: "fas fa-network-wired", description: "Designing and managing computer networks.", category: "operations", link: "blogs/network-engineer.html" },
+            { name: "Embedded Engineer", icon: "fas fa-microchip", description: "Working with hardware and low-level software.", category: "specialized", link: "blogs/embedded-software-engineer.html" },
+            { name: "Business Analyst", icon: "fas fa-briefcase", description: "Bridging business and technical requirements.", category: "management", link: "blogs/business-analyst.html" },
+            { name: "Cyber Security Analyst", icon: "fas fa-shield-alt", description: "Protecting systems from cyber threats.", category: "specialized", link: "blogs/cyber-security-analyst.html" },
+            { name: "Database Administrator", icon: "fas fa-server", description: "Ensuring database performance and security.", category: "operations", link: "blogs/database-administrator.html" },
+            { name: "Linux System Administrator", icon: "fab fa-linux", description: "Managing Linux-based systems.", category: "operations", link: "blogs/linux-system-administrator.html" },
+            { name: "Product Manager", icon: "fas fa-box", description: "Guiding the entire product lifecycle.", category: "management", link: "blogs/product-manager.html" },
+            { name: "Programmer Analyst", icon: "fas fa-bug", description: "Analyzing systems and developing solutions.", category: "development", link: "blogs/programmer-analyst.html" },
+            { name: "QA Engineer", icon: "fas fa-check-circle", description: "Ensuring software quality and reliability.", category: "specialized", link: "blogs/quality-assurance-engineer.html" }
+        ];
+
+        const roleGrid = document.getElementById('roleGrid');
+        const filterButtons = document.querySelectorAll('.filter-button');
+
+        function displayRoles(filteredRoles) {
+            roleGrid.innerHTML = ''; // Clear current roles
+            filteredRoles.forEach(role => {
+                const card = document.createElement('div');
+                card.classList.add('role-card');
+                card.innerHTML = `
+                    <i class="${role.icon} icon"></i>
+                    <h3>${role.name}</h3>
+                    <p>${role.description}</p>
+                `;
+                // Update: Redirect to the specific blog page when the card is clicked
+                card.addEventListener('click', () => {
+                    if (role.link) {
+                        window.location.href = role.link;
+                    } else {
+                        // Fallback if a link is not defined for some reason
+                        console.warn(`No link defined for role: ${role.name}`);
+                        alert(`You clicked on ${role.name}! (No specific blog page configured)`);
+                    }
+                });
+                roleGrid.appendChild(card);
+            });
+        }
+
+        // Initial display of all roles
+        displayRoles(roles);
+
+        // Filter functionality
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                e.target.classList.add('active');
+
+                const selectedCategory = e.target.dataset.category;
+
+                const filtered = roles.filter(role => {
+                    return selectedCategory === 'all' || role.category === selectedCategory;
+                });
+                displayRoles(filtered);
+            });
+        });
+
+        // Smooth scroll for 'Start Exploring Roles' button
+        document.querySelector('.hero-section .btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+    </script>
+
+</body>
+</html>
